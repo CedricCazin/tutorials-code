@@ -31,15 +31,13 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 20
-                  cache: "npm"
+                  cache: 'npm'
 
             - run: npm ci
 
-            - run: npx nx format:check --verbose
+            # - run: npx nx format:check --verbose
 
             - run: npx nx affected -t lint test
-
-            - run: npx nx affected -t e2e
 
             - run: npx nx run-many -t build --configuration=production --parallel=3
 

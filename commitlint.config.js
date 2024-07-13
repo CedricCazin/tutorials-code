@@ -38,7 +38,7 @@ async function getConfig() {
         default: {
             utils: { getProjects },
         },
-    } = await import("@commitlint/config-nx-scopes");
+    } = await import('@commitlint/config-nx-scopes');
 
     const projects = await getProjects();
     projects.map((p) =>
@@ -48,25 +48,21 @@ async function getConfig() {
     return {
         // commitlint options
         extends: [
-            "@commitlint/config-conventional",
-            "@commitlint/config-nx-scopes",
+            '@commitlint/config-conventional',
+            '@commitlint/config-nx-scopes',
         ],
         ignores: [
-            (message) => message.includes("WIP"),
-            (message) => message.includes("[skip ci]"),
+            (message) => message.includes('WIP'),
+            (message) => message.includes('[skip ci]'),
         ],
         rules: {
-            "type-enum": [
+            'type-enum': [
                 2,
-                "always",
+                'always',
                 Object.values(types).map((s) => s.value),
             ],
-            "scope-empty": [2, "never"],
-            "scope-enum": [
-                1,
-                "always",
-                ["all", ...scopes.map((s) => s.value), projects],
-            ],
+            'scope-empty': [2, 'never'],
+            'scope-enum': [1, 'always', ['all', ...scopes.map((s) => s.value)]],
         },
 
         // cz-git, czg options
@@ -74,7 +70,7 @@ async function getConfig() {
         enableMultipleScopes: true,
         allowCustomScopes: true,
         allowEmptyScopes: false,
-        scopes: [...scopes, ...projects],
+        scopes: [...scopes],
     };
 }
 
