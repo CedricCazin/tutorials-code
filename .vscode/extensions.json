@@ -1,7 +1,37 @@
 {
-  "recommendations": [
-    
-    "nrwl.angular-console",
-    "esbenp.prettier-vscode"
-  ]
+    "recommendations": [
+        //--GITHUB
+        "GitHub.codespaces",
+        "GitHub.vscode-pull-request-github",
+        "GitHub.github-vscode-theme",
+        "GitHub.remotehub",
+        "GitHub.vscode-github-actions",
+
+        //--MARKDOWN
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        "dbankier.vscode-instant-markdown",
+
+        //--Angular
+        "johnpapa.angular-essentials",
+        "mikael.angular-beastcode",
+
+        //--NESTJS
+        "ashinzekene.nestjs",
+
+        //--CSV
+        "phplasma.csv-to-table",
+        "mechatroner.rainbow-csv",
+
+        //--LINT
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+
+        //--NX
+        "nrwl.angular-console",
+
+        //--Various
+        "streetsidesoftware.code-spell-checker",
+        "hediet.vscode-drawio"
+    ]
 }
