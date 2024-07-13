@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/CedricCazin/tutorials-code/compare/v1.0.0...v1.1.0) (2024-07-13)
+
+
+### Features
+
+* **webapp:** add webapp angular ([4ab0021](https://github.com/CedricCazin/tutorials-code/commit/4ab0021c5288e5ae445a95a99ca280331f2cab67))
+
 # 1.0.0 (2024-07-13)
 
 
