@@ -42,7 +42,7 @@ async function getConfig() {
 
     const projects = await getProjects();
     projects.map((p) =>
-        scopes.push({ value: p, name: `${p}: anything related to ${p}` }),
+        scopes.push({ value: p, name: `${p}: anything related to ${p}` })
     );
 
     return {
