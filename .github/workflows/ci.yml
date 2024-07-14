@@ -37,7 +37,9 @@ jobs:
 
             # - run: npx nx format:check --verbose
 
-            - run: npx nx affected -t lint test
+            - run: npx nx affected -t lint
+
+            - run: npx nx affected -t test --passWithNoTests
 
             - run: npx nx run-many -t build --configuration=production --parallel=3
 

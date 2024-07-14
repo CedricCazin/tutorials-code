@@ -9,6 +9,23 @@
             "executor": "@nx/js:node",
             "defaultConfiguration": "development",
             "options": {
+                "port": 9229,
+                "buildTarget": "webapi:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "webapi:build:development"
+                },
+                "production": {
+                    "buildTarget": "webapi:build:production"
+                }
+            }
+        },
+        "serveSecond": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+                "port": 2992,
                 "buildTarget": "webapi:build"
             },
             "configurations": {
