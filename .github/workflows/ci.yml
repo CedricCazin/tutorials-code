@@ -35,7 +35,7 @@ jobs:
 
             - run: npm ci
 
-            # - run: npx nx format:check --verbose
+            - run: npx nx format:check --verbose
 
             - run: npx nx affected -t lint
 
