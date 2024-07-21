@@ -1,0 +1,101 @@
+networks:
+    tutorials-network:
+        name: tutorials-network
+
+volumes:
+    tutorials-minio-volume:
+    tutorials-postgres-volume:
+    tutorials-mariadb-volume:
+    tutorials-mongo-volume:
+
+services:
+    # ----------------------------------------
+    # SERVICES
+
+    tutorials-postgres:
+        image: postgres
+        container_name: tutorials-postgres
+        networks:
+            - tutorials-network
+        restart: always
+        ports:
+            - 4250:5432
+        volumes:
+            - tutorials-postgres-volume:/var/lib/postgresql/data
+            - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+        env_file: ./postgres/envfile
+        shm_size: 64mb
+        ipc: shareable
+
+    tutorials-mongo:
+        image: mongo
+        container_name: tutorials-mongo
+        networks:
+            - tutorials-network
+        restart: always
+        ports:
+            - 4251:27017
+        volumes:
+            - tutorials-mongo-volume:/data/db
+            - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        env_file: ./mongo/envfile
+
+    tutorials-mariadb:
+        image: mariadb
+        container_name: tutorials-mariadb
+        networks:
+            - tutorials-network
+        restart: always
+        ports:
+            - 4253:3306
+        volumes:
+            - tutorials-mariadb-volume:/var/lib/mysql
+        env_file: ./mariadb/envfile
+
+    tutorials-minio:
+        image: minio/minio
+        container_name: tutorials-minio
+        networks:
+            - tutorials-network
+        restart: always
+        ports:
+            - 4260:9000
+            - 4261:9001
+        volumes:
+            - tutorials-minio-volume:/data
+        env_file: ./minio/envfile
+        command: server /data --console-address ":9001"
+        healthcheck:
+            test:
+                ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+            interval: 5s
+            timeout: 10s
+            retries: 5
+
+    tutorials-:
+        image:
+        container_name: tutorials-redis
+        networks:
+            - tutorials-network
+        restart: always
+        ports:
+            - 4262:6379
+            - 4263:8001
+
+    # ----------------------------------------
+    # SEED
+
+    tutorials-minio-mc:
+        image: minio/mc
+        container_name: tutorials-minio-mc
+        networks:
+            - tutorials-network
+        restart: 'no'
+        env_file: ./minio/envfile
+        volumes:
+            - ./minio:/tmp/minio
+        entrypoint: /bin/sh
+        command: /tmp/minio/seed.sh
+        depends_on:
+            tutorials-minio:
+                condition: service_healthy
