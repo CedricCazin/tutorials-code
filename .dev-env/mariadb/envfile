@@ -1,0 +1,7 @@
+# https://mariadb.com/kb/en/mariadb-server-docker-official-image-environment-variables/
+
+MARIADB_ROOT_PASSWORD=password
+
+MARIADB_USER=mariadb_admin_tutorials
+MARIADB_PASSWORD=password
+MARIADB_DATABASE=tutorials

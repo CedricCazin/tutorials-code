@@ -1,0 +1,38 @@
+{
+    "name": ".dev-env",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "targets": {
+        "services:start": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": ".dev-env",
+                "commands": ["docker compose up"],
+                "env": {
+                    "AWS_PROFILE": "Power@Dev"
+                }
+            }
+        },
+        "services:stop": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": ".dev-env",
+                "commands": ["docker compose stop"]
+            }
+        },
+        "services:restart": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": ".dev-env",
+                "commands": ["docker compose restart"]
+            }
+        },
+        "services:rm": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": ".dev-env",
+                "commands": ["docker compose down -v"]
+            }
+        }
+    },
+    "tags": []
+}
